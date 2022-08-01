@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
-file="./pingplot_v1.1.0_172.101.1.16_2022-07-27.log"
+# file="./pingplot_v1.1.0_172.101.1.16_2022-07-27.log"
+file="./pingplot_v1.1.0_192.168.86.52_2022-07-27.log"
 
 time = []
 ping = []
@@ -27,7 +28,16 @@ for line in open(file, "r", encoding="utf-8"):
 
 # print(time)
 # print(ping)
-# plt.plot(ping) 
-# plt.show()
-print(total)
-print(total/i)
+print(i)
+plt.axhline(y=total/i, color="red", label='avg ping time')
+plt.plot(ping, linestyle=':', label='ping time') 
+plt.xlabel('frequency')
+plt.ylabel('round-trip times(ms)')
+plt.title('Speedtest')
+
+plt.text(i/2, total/i,'avg time =' + format(total/i, '.2f') + 'ms', 
+        style='italic',
+        bbox={'facecolor':'#C1FFC1', 'pad':10})  
+
+plt.legend()
+plt.show()
